@@ -3,7 +3,7 @@ import { FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import ProductItem from '../../components/shop/ProductItem';
 
-const ProductsOverviewScreen = (props) => {
+const ProductsOverviewScreen = ({navigation}) => {
   const products = useSelector(state => state.products.availableProducts);
 
   return (
@@ -13,7 +13,10 @@ const ProductsOverviewScreen = (props) => {
       renderItem={({ item }) => (
         <ProductItem
           {...item}
-          onViewDetail={() => console.log(`View ${item.title}`)}
+          onViewDetail={() => navigation.navigate('ProductDetail', {
+            id: item.id,
+            title: item.title,
+          })}
           onAddToCart={() => console.log(`Add ${item.title} to cart`)}
         />
       )}
