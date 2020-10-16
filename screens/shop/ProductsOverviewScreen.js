@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, Platform } from 'react-native';
-import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import ProductItem from '../../components/shop/ProductItem';
 import { addToCart } from '../../redux/actions/cart';
@@ -31,6 +31,15 @@ const ProductsOverviewScreen = ({navigation}) => {
 ProductsOverviewScreen.navigationOptions = ({navigation}) => {
   return {
     headerTitle: 'All Products',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item 
+          title='Cart' 
+          iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
+          onPress={navigation.toggleDrawer}
+          />
+      </HeaderButtons>
+    ),
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item 
