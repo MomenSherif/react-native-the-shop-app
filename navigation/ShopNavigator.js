@@ -51,7 +51,7 @@ const ShopNavigator = createDrawerNavigator({
     }
   },
   Orders: {
-    screen: OrdersScreen,
+    screen: OrdersNavigator,
     navigationOptions: {
       drawerIcon: (drawerConfig) =>
         <Ionicons

@@ -1,18 +1,21 @@
 import React from 'react';
-import { Text, FlatList, Platform } from 'react-native';
+import { FlatList, Platform } from 'react-native';
 import { useSelector } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
+import OrderItem from '../../components/shop/OrderItem';
 
 const OrdersScreen = props => {
   const orders = useSelector(state => state.orders);
-  console.log(orders);
+
   return (
     <FlatList
       data={orders}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <Text>{item.amount}</Text>
+        <OrderItem
+          {...item}
+        />
       )}
     />
   )

@@ -1,4 +1,5 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart';
+import { ADD_ORDER } from '../actions/order';
 import CartItem from '../../models/cartItem';
 
 const cartReducerInitialState = {
@@ -31,7 +32,7 @@ const cartReducer = (state = cartReducerInitialState, action) => {
       let updatedCartItems;
       const { productId } = action;
       const { quantity, productTitle, productPrice, sum } = state.items[productId]
-      
+
       if (quantity > 1) {
         const updatedCartItem = new CartItem(quantity - 1, productPrice, productTitle, sum - productPrice);
         updatedCartItems = { ...state.items, [productId]: updatedCartItem };
@@ -44,7 +45,8 @@ const cartReducer = (state = cartReducerInitialState, action) => {
         items: updatedCartItems,
         totalAmount: state.totalAmount - productPrice,
       };
-
+    case ADD_ORDER:
+      return cartReducerInitialState;
     default:
       return state;
   }
