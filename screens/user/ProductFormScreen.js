@@ -22,11 +22,13 @@ const ProductFormScreen = ({ navigation }) => {
     } else {
       dispatch(createProduct(title, description, imageUrl, +price));
     }
+
+    navigation.goBack();
   }, [dispatch, title, imageUrl, price, description]);
 
   useEffect(() => {
     navigation.setParams({ submitHandler });
-  }, [submitHandler])
+  }, [submitHandler]);
 
   return (
     <ScrollView>

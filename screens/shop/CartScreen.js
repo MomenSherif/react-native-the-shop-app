@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartItem from '../../components/shop/CartItem';
 import { removeFromCart } from '../../redux/actions/cart';
 import { addOrder } from '../../redux/actions/order';
+import Card from '../../components/UI/Card';
 import colors from '../../constants/colors';
 
 const CartScreen = props => {
@@ -14,14 +15,14 @@ const CartScreen = props => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.summary}>
+      <Card style={styles.summary}>
         <Text style={styles.summaryText}>Total: <Text style={styles.amount}>${totalAmount.toFixed(2)}</Text></Text>
         <Button
           title="Order Now"
           onPress={() => dispatch(addOrder(cartItems, totalAmount))}
           disabled={!cartItems.length}
         />
-      </View>
+      </Card>
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.id}
@@ -51,13 +52,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
     padding: 10,
-    shadowColor: 'black',
-    shadowOpacity: 0.26,
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 8,
-    elevation: 5,
-    borderRadius: 10,
-    backgroundColor: 'white',
   },
   summaryText: {
     fontFamily: 'open-sans-bold',
